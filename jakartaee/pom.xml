@@ -1,0 +1,259 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>hu.imosonyi</groupId>
+	<artifactId>bvtech</artifactId>
+	<version>1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<properties>
+		<!-- Project settings -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+
+		<!-- Application dependency versions -->
+		<version.jakarta.jakartaee-api>8.0.0</version.jakarta.jakartaee-api>
+
+		<!-- Plugin versions -->
+		<version.maven-checkstyle-plugin>3.1.1</version.maven-checkstyle-plugin>
+		<version.checkstyle>8.31</version.checkstyle>
+		<version.maven-war-plugin>3.2.3</version.maven-war-plugin>
+		<version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
+		<version.maven-surefire-plugin>3.0.0-M4</version.maven-surefire-plugin>
+		<version.maven-failsafe-plugin>3.0.0-M4</version.maven-failsafe-plugin>
+		<version.build-helper-maven-plugin>3.1.0</version.build-helper-maven-plugin>
+		<version.jacoco-maven-plugin>0.8.5</version.jacoco-maven-plugin>
+	</properties>
+
+	<dependencies>
+		<!-- Application dependencies -->
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<version>${version.jakarta.jakartaee-api}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<!-- Plugins that are used for every build -->
+		<plugins>
+			<!-- Compile code with JDK11 -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.maven-compiler-plugin}</version>
+				<configuration>
+					<release>11</release>
+				</configuration>
+			</plugin>
+
+			<!-- Add integration test sources and resources (src/it/java, src/it/resource) -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-it-sources</id>
+						<phase>generate-test-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/it/java</source>
+							</sources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-it-resources</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>add-test-resource</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>src/it/resources</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Create war file. -->
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+			</plugin>
+
+			<!-- Checkstyle plugin -->
+			<!-- mvn checkstyle:check -->
+			<plugin>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<configuration>
+					<configLocation>../checkstyle/checkstyle.xml</configLocation>
+					<suppressionsLocation>../checkstyle/suppressions.xml</suppressionsLocation>
+					<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+					<encoding>UTF-8</encoding>
+					<consoleOutput>true</consoleOutput>
+					<violationSeverity>warning</violationSeverity>
+					<failOnViolation>true</failOnViolation>
+					<linkXRef>false</linkXRef>
+				</configuration>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>${version.checkstyle}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+
+		<!-- Plugins used to all builds -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${version.maven-war-plugin}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>${version.maven-checkstyle-plugin}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${version.maven-surefire-plugin}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${version.maven-failsafe-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${version.jacoco-maven-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>${version.build-helper-maven-plugin}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+	<profiles>
+		<profile>
+			<!-- Default profile: runs both junit and integration tests. -->
+			<!-- mvn verify -->
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<!-- Configure surefire to run the junit tests -->
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<argLine>${surefireArgLine}</argLine>
+						</configuration>
+					</plugin>
+
+					<!-- Configure failsafe to execute the integration tests -->
+					<plugin>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<configuration>
+							<argLine>${failsafeArgLine}</argLine>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- Configure JaCoCo code coverage reports -->
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<executions>
+							<!-- Prepare JaCoCo agent for junit tests -->
+							<execution>
+								<id>pre-unit-test</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+								<configuration>
+									<propertyName>surefireArgLine</propertyName>
+								</configuration>
+							</execution>
+							<!-- Create junit test code coverage report (target/site/jacoco) -->
+							<execution>
+								<id>post-unit-test</id>
+								<phase>test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+							</execution>
+							<!-- Prepare JaCoCo agent for integration tests -->
+							<execution>
+								<id>jacoco-prepare-it</id>
+								<phase>validate</phase>
+								<goals>
+									<goal>prepare-agent-integration</goal>
+								</goals>
+								<configuration>
+									<propertyName>jacoco.agent</propertyName>
+								</configuration>
+							</execution>
+							<!-- Create integration test code coverage report (target/site/jacoco-it) -->
+							<execution>
+								<id>jacoco-report-it</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>report-integration</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<!-- Profile for skipping all tests. -->
+			<!-- mvn package -->
+			<id>skipTests</id>
+			<build>
+				<plugins>
+					<!-- Configure surefire to skip the test phase -->
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<skipTests>true</skipTests>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>
