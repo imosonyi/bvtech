@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: mosonyi15/jakarta-wildfly:0.2
+
+    working_directory: ~/repo
+
+    environment:
+      # JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # Fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: cd jakartaee && mvn dependency:go-offline && cd ..
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+
+      # Build project and run tests
+      - run: cd jakartaee && mvn verify && cd ..
+
+      # Store test results
+      - store_artifacts:
+          path: target/site
+      - store_test_results:
+          path: target
