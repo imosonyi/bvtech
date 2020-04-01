@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import hu.imosonyi.bvtech.dto.ParagraphGenerationInfo;
-import hu.imosonyi.bvtech.dto.RandomParagraphsStatistics;
+import hu.imosonyi.bvtech.dto.RandomTextParagraphsStatistics;
 import hu.imosonyi.bvtech.rest.impl.TextRestImpl;
 import hu.imosonyi.bvtech.service.TextService;
 
@@ -30,8 +30,8 @@ public class TextRestTest extends AbstractRestTest {
     @Test
     public void testGetTextShouldCallTextService () {
         when(Response.ok()).thenReturn(responseBuilder);
-        when(textService.getRandomParagraphsStatistics(any())).thenReturn(new RandomParagraphsStatistics());
-        when(responseBuilder.entity(any(RandomParagraphsStatistics.class))).thenReturn(responseBuilder);
+        when(textService.getRandomParagraphsStatistics(any())).thenReturn(new RandomTextParagraphsStatistics());
+        when(responseBuilder.entity(any(RandomTextParagraphsStatistics.class))).thenReturn(responseBuilder);
         ParagraphGenerationInfo paragraphGenerationInfo = new ParagraphGenerationInfo();
 
         textRest.getText(paragraphGenerationInfo);

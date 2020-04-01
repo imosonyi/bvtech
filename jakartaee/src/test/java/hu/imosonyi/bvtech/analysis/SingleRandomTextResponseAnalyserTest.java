@@ -20,7 +20,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import hu.imosonyi.bvtech.analysis.impl.SingleParagraphAnalyzerImpl;
 import hu.imosonyi.bvtech.analysis.impl.SingleRandomTextResponseAnalyzerImpl;
 import hu.imosonyi.bvtech.dto.RandomTextResponse;
-import hu.imosonyi.bvtech.dto.SingleRandomTextRequestStatistics;
+import hu.imosonyi.bvtech.dto.SingleRandomTextResponseStatistics;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SingleRandomTextResponseAnalyserTest {
@@ -37,7 +37,7 @@ public class SingleRandomTextResponseAnalyserTest {
         RandomTextResponse input = new RandomTextResponse();
         input.setGeneratedParagraphs(paragraphs);
         
-        SingleRandomTextRequestStatistics result = singleRandomTextResponseAnalyzer.analyze(input);
+        SingleRandomTextResponseStatistics result = singleRandomTextResponseAnalyzer.analyze(input);
         
         assertThat(result.getParagraphProcessingTime(), is(nullValue()));
     }
@@ -48,7 +48,7 @@ public class SingleRandomTextResponseAnalyserTest {
         RandomTextResponse input = new RandomTextResponse();
         input.setGeneratedParagraphs(paragraphs);
         
-        SingleRandomTextRequestStatistics result = singleRandomTextResponseAnalyzer.analyze(input);
+        SingleRandomTextResponseStatistics result = singleRandomTextResponseAnalyzer.analyze(input);
         
         List<Integer> expected = Arrays.asList(2, 3, 5);
         assertThat(result.getParagraphSizes(), everyItem(is(in(expected))));
@@ -61,7 +61,7 @@ public class SingleRandomTextResponseAnalyserTest {
         RandomTextResponse input = new RandomTextResponse();
         input.setGeneratedParagraphs(paragraphs);
         
-        SingleRandomTextRequestStatistics result = singleRandomTextResponseAnalyzer.analyze(input);
+        SingleRandomTextResponseStatistics result = singleRandomTextResponseAnalyzer.analyze(input);
         
         Map<String, Integer> expected = new HashMap<>();
         expected.put("Generated", 1);
