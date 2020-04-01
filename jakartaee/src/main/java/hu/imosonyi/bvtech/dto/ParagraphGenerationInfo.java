@@ -57,11 +57,4 @@ public class ParagraphGenerationInfo implements Serializable {
         this.wordCountMax = wordCountMax;
     }
 
-    @Override
-    public String toString () {
-        return "ParagraphInfo [paragraphStart=" + paragraphStart + ", paragraphEnd="
-                + paragraphEnd + ", wordCountMin="
-                + wordCountMin + ", wordCountMax=" + wordCountMax + "]";
-    }
-
 }

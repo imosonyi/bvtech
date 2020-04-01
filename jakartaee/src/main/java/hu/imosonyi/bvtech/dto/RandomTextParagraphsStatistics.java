@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.json.bind.annotation.JsonbProperty;
 
-public class RandomParagraphsStatistics implements Serializable {
+public class RandomTextParagraphsStatistics implements Serializable {
 
     private static final long serialVersionUID = 7958839817081330838L;
 
