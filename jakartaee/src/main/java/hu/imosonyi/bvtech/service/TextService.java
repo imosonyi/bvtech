@@ -1,11 +1,11 @@
 package hu.imosonyi.bvtech.service;
 
 import hu.imosonyi.bvtech.dto.ParagraphGenerationInfo;
-import hu.imosonyi.bvtech.dto.RandomParagraphsStatistics;
+import hu.imosonyi.bvtech.dto.RandomTextParagraphsStatistics;
 
 public interface TextService {
 
-    RandomParagraphsStatistics getRandomParagraphsStatistics (
+    RandomTextParagraphsStatistics getRandomParagraphsStatistics (
             ParagraphGenerationInfo paragraphGenerationInfo);
 
 }
