@@ -32,6 +32,6 @@ jobs:
 
       # Store test results
       - store_artifacts:
-          path: target/site
+          path: jakartaee/target/bvtech-jakartaee.war
       - store_test_results:
-          path: target
+          path: jakartaee/target/site

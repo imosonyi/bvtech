@@ -40,6 +40,9 @@
 	</dependencies>
 
 	<build>
+		<!-- Final WAR name -->
+		<finalName>bvtech-jakartaee</finalName>
+
 		<!-- Plugins that are used for every build -->
 		<plugins>
 			<!-- Compile code with JDK11 -->
@@ -155,7 +158,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<!-- Default profile: runs both junit and integration tests. -->
