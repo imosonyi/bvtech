@@ -1,27 +1,25 @@
 package hu.imosonyi.bvtech.rest.impl;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
-import hu.imosonyi.bvtech.dto.ParagraphInfo;
-import hu.imosonyi.bvtech.dto.Statistics;
+import hu.imosonyi.bvtech.dto.ParagraphGenerationInfo;
 import hu.imosonyi.bvtech.rest.TextRest;
+import hu.imosonyi.bvtech.service.TextService;
 
 @RequestScoped
 public class TextRestImpl implements TextRest {
 
+    @Inject
+    private TextService textService;
+
     @Override
-    public Response getTextTest (ParagraphInfo paragraphInfo) {
-        return Response.ok().entity(generateDummyResponse()).build();
-    }
-    
-    private Statistics generateDummyResponse() {
-        Statistics statistics = new Statistics();
-        statistics.setMostFrequentWord("Frequent");
-        statistics.setAverageParagraphProcessingTime(15L);
-        statistics.setAverageParagraphSize(7);
-        statistics.setTotalProcessingTime(75L);
-        return statistics;
+    public Response getText (ParagraphGenerationInfo paragraphGenerationInfo) {
+        return Response
+                .ok()
+                .entity(textService.getRandomParagraphsStatistics(paragraphGenerationInfo))
+                .build();
     }
 
 }

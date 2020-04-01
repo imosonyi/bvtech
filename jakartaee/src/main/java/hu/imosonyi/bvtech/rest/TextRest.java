@@ -7,13 +7,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import hu.imosonyi.bvtech.dto.ParagraphInfo;
+import hu.imosonyi.bvtech.dto.ParagraphGenerationInfo;
 
 @Path("/text")
 public interface TextRest {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    Response getTextTest (@BeanParam ParagraphInfo paragraphInfo);
+    Response getText (@BeanParam ParagraphGenerationInfo paragraphInfo);
 
 }

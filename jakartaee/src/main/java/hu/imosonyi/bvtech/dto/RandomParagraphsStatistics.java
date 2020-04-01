@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.json.bind.annotation.JsonbProperty;
 
-public class Statistics implements Serializable {
+public class RandomParagraphsStatistics implements Serializable {
 
     private static final long serialVersionUID = 7958839817081330838L;
 
@@ -12,10 +12,10 @@ public class Statistics implements Serializable {
     private String mostFrequentWord;
 
     @JsonbProperty("avg_paragraph_size")
-    private Integer averageParagraphSize;
+    private Double averageParagraphSize;
 
     @JsonbProperty("avg_paragraph_processing_time")
-    private Long averageParagraphProcessingTime;
+    private Double averageParagraphProcessingTime;
 
     @JsonbProperty("total_processing_time")
     private Long totalProcessingTime;
@@ -28,19 +28,19 @@ public class Statistics implements Serializable {
         this.mostFrequentWord = mostFrequentWord;
     }
 
-    public Integer getAverageParagraphSize () {
+    public Double getAverageParagraphSize () {
         return averageParagraphSize;
     }
 
-    public void setAverageParagraphSize (Integer averageParagraphSize) {
+    public void setAverageParagraphSize (Double averageParagraphSize) {
         this.averageParagraphSize = averageParagraphSize;
     }
 
-    public Long getAverageParagraphProcessingTime () {
+    public Double getAverageParagraphProcessingTime () {
         return averageParagraphProcessingTime;
     }
 
-    public void setAverageParagraphProcessingTime (Long averageParagraphProcessingTime) {
+    public void setAverageParagraphProcessingTime (Double averageParagraphProcessingTime) {
         this.averageParagraphProcessingTime = averageParagraphProcessingTime;
     }
 

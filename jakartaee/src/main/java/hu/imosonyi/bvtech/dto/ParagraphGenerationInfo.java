@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.QueryParam;
 
-public class ParagraphInfo implements Serializable {
+public class ParagraphGenerationInfo implements Serializable {
 
     private static final long serialVersionUID = -7418272506521585255L;
 
