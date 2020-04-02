@@ -4,7 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
-import hu.imosonyi.bvtech.dto.ParagraphGenerationInfo;
+import hu.imosonyi.bvtech.dto.TextRequest;
 import hu.imosonyi.bvtech.rest.TextRest;
 import hu.imosonyi.bvtech.service.TextService;
 
@@ -15,10 +15,10 @@ public class TextRestImpl implements TextRest {
     private TextService textService;
 
     @Override
-    public Response getText (ParagraphGenerationInfo paragraphGenerationInfo) {
+    public Response getText (TextRequest textRequest) {
         return Response
                 .ok()
-                .entity(textService.getRandomParagraphsStatistics(paragraphGenerationInfo))
+                .entity(textService.getStatistics(textRequest))
                 .build();
     }
 

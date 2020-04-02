@@ -1,34 +1,23 @@
 package hu.imosonyi.bvtech.service.impl;
 
 import javax.enterprise.context.RequestScoped;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
+import javax.inject.Inject;
 
-import hu.imosonyi.bvtech.dto.ParagraphGenerationInfo;
-import hu.imosonyi.bvtech.dto.RandomTextParagraphsStatistics;
+import hu.imosonyi.bvtech.dto.TextRequest;
+import hu.imosonyi.bvtech.dto.TextResponse;
 import hu.imosonyi.bvtech.service.TextService;
 
 @RequestScoped
 public class TextServiceImpl implements TextService {
 
-    private Client client = ClientBuilder.newClient();
+    @Inject
+    private ApiServiceImpl apiService;
     
     @Override
-    public RandomTextParagraphsStatistics getRandomParagraphsStatistics (
-            ParagraphGenerationInfo paragraphGenerationInfo) {
-        final long totalProcessingStart = System.currentTimeMillis();
-        RandomTextParagraphsStatistics statistics = mockStatistics();
-        final long totalProcessingEnd = System.currentTimeMillis();
-        statistics.setTotalProcessingTime(totalProcessingEnd - totalProcessingStart);
-        return statistics;
-    }
-
-    private RandomTextParagraphsStatistics mockStatistics () {
-        RandomTextParagraphsStatistics statistics = new RandomTextParagraphsStatistics();
-        statistics.setAverageParagraphProcessingTime(5.0);
-        statistics.setAverageParagraphSize(5.0);
-        statistics.setMostFrequentWord("frequent");
-        return statistics;
+    public TextResponse getStatistics (TextRequest textRequest) {
+        TextResponse textResponse = apiService.analyze(textRequest);
+        // TODO: save in database
+        return textResponse;
     }
 
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.json.bind.annotation.JsonbProperty;
 
-public class RandomTextResponse implements Serializable {
+public class ApiResponse implements Serializable {
 
     private static final long serialVersionUID = -8897356299437865124L;
 

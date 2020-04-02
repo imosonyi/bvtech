@@ -1,17 +1,13 @@
-package hu.imosonyi.bvtech.analysis.impl;
+package hu.imosonyi.bvtech.randomtext;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.enterprise.context.RequestScoped;
+import hu.imosonyi.bvtech.dto.ParagraphStatistics;
 
-import hu.imosonyi.bvtech.analysis.SingleParagraphAnalyzer;
-import hu.imosonyi.bvtech.dto.SingleParagraphStatistics;
-
-@RequestScoped
-public class SingleParagraphAnalyzerImpl implements SingleParagraphAnalyzer {
+public class ParagraphAnalyzer {
 
     // "<p>".length()
     private static final Integer P_START = 3;
@@ -21,12 +17,24 @@ public class SingleParagraphAnalyzerImpl implements SingleParagraphAnalyzer {
 
     private static final String DELIMITER = " ";
 
-    @Override
-    public SingleParagraphStatistics analyze (String paragraph) {
+    private final ParagraphStatistics statistics;
+
+    /**
+     * TODO.
+     * @param paragraph TODO.
+     */
+    public ParagraphAnalyzer (String paragraph) {
+        final long start = System.currentTimeMillis();
+        statistics = new ParagraphStatistics();
         List<String> wordList = calculateWordList(paragraph);
-        Integer size = wordList.size();
-        Map<String, Integer> wordCounts = calculateWordCounts(wordList);
-        return new SingleParagraphStatistics(wordCounts, size);
+        statistics.setSize(wordList.size());
+        statistics.setWordCounts(calculateWordCounts(wordList));
+        final long end = System.currentTimeMillis();
+        statistics.setProcessingTime(end - start);
+    }
+    
+    public ParagraphStatistics getStatistics () {
+        return statistics;
     }
 
     private List<String> calculateWordList (String paragraph) {
