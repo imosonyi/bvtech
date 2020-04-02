@@ -5,6 +5,11 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.QueryParam;
 
+/**
+ * Request DTO from /betvictor/text.
+ *
+ * @author István Mosonyi
+ */
 public class TextRequest implements Serializable {
 
     private static final long serialVersionUID = -7418272506521585255L;

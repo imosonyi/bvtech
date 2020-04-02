@@ -8,6 +8,11 @@ import hu.imosonyi.bvtech.dto.TextRequest;
 import hu.imosonyi.bvtech.rest.TextRest;
 import hu.imosonyi.bvtech.service.TextService;
 
+/**
+ * Implements the {@link TextRest} interface.
+ *
+ * @author István Mosonyi
+ */
 @RequestScoped
 public class TextRestImpl implements TextRest {
 

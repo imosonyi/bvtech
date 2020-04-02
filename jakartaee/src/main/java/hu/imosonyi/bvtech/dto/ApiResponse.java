@@ -2,31 +2,36 @@ package hu.imosonyi.bvtech.dto;
 
 import java.io.Serializable;
 
-import javax.json.bind.annotation.JsonbProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Response from RandomText API.
+ *
+ * @author István Mosonyi
+ */
 public class ApiResponse implements Serializable {
 
     private static final long serialVersionUID = -8897356299437865124L;
 
-    @JsonbProperty("type")
+    @JsonProperty("type")
     private String type;
 
-    @JsonbProperty("amount")
+    @JsonProperty("amount")
     private Integer numberOfParagraphs;
 
-    @JsonbProperty("number")
+    @JsonProperty("number")
     private Integer minNumberOfWords;
 
-    @JsonbProperty("number_max")
+    @JsonProperty("number_max")
     private Integer maxNumberOfWords;
 
-    @JsonbProperty("format")
+    @JsonProperty("format")
     private String format;
 
-    @JsonbProperty("time")
+    @JsonProperty("time")
     private String time;
 
-    @JsonbProperty("text_out")
+    @JsonProperty("text_out")
     private String generatedParagraphs;
 
     public String getType () {

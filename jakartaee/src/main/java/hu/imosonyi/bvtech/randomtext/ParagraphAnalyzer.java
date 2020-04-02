@@ -7,21 +7,26 @@ import java.util.Map;
 
 import hu.imosonyi.bvtech.dto.ParagraphStatistics;
 
+/**
+ * Analyzes a single paragraph from RandomText API. Trims the HTML tags,
+ * calculates the word counts and the size of the paragraph.
+ *
+ * @author István Mosonyi
+ */
 public class ParagraphAnalyzer {
 
-    // "<p>".length()
-    private static final Integer P_START = 3;
+    private static final Integer P_START = "<p>".length();
 
-    // ".</p>".length()
-    private static final Integer P_END = 5;
+    private static final Integer P_END = ".</p>".length();
 
     private static final String DELIMITER = " ";
 
     private final ParagraphStatistics statistics;
 
     /**
-     * TODO.
-     * @param paragraph TODO.
+     * Analyze single paragraph.
+     *
+     * @param paragraph Single paragraph from RandomText API.
      */
     public ParagraphAnalyzer (String paragraph) {
         final long start = System.currentTimeMillis();
@@ -32,7 +37,12 @@ public class ParagraphAnalyzer {
         final long end = System.currentTimeMillis();
         statistics.setProcessingTime(end - start);
     }
-    
+
+    /**
+     * Get the analysis result of a single paragraph.
+     *
+     * @return Statistics for a single paragraph.
+     */
     public ParagraphStatistics getStatistics () {
         return statistics;
     }

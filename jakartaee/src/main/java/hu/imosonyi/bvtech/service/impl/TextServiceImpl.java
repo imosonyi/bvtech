@@ -7,12 +7,17 @@ import hu.imosonyi.bvtech.dto.TextRequest;
 import hu.imosonyi.bvtech.dto.TextResponse;
 import hu.imosonyi.bvtech.service.TextService;
 
+/**
+ * Implements the {@link TextService} interface.
+ *
+ * @author István Mosonyi
+ */
 @RequestScoped
 public class TextServiceImpl implements TextService {
 
     @Inject
     private ApiServiceImpl apiService;
-    
+
     @Override
     public TextResponse getStatistics (TextRequest textRequest) {
         TextResponse textResponse = apiService.analyze(textRequest);

@@ -18,38 +18,50 @@ import hu.imosonyi.bvtech.randomtext.ApiPathGenerator;
 import hu.imosonyi.bvtech.randomtext.ApiResponseProcessor;
 import hu.imosonyi.bvtech.service.ApiService;
 
+/**
+ * Implements the {@link ApiService} interface.
+ *
+ * @author István Mosonyi
+ */
 @RequestScoped
 public class ApiServiceImpl implements ApiService {
+
+    private ApiPathGenerator apiPathGenerator = new ApiPathGenerator();
+
+    private ApiClient apiClient = new ApiClient();
 
     @Override
     public TextResponse analyze (TextRequest textRequest) {
         final long start = System.currentTimeMillis();
 
-        List<CompletableFuture<List<ParagraphStatistics>>> apiCalls = new ArrayList<>();
-        for (String path : ApiPathGenerator.getPaths(textRequest)) {
-            apiCalls.add(callApiAndAnalize(path));
-        }
-        List<ParagraphStatistics> paragraphStatistics = apiCalls.stream()
-                .map(CompletableFuture::join)
-                .flatMap(List::stream)
-                .collect(Collectors.toList());
-
+        List<ParagraphStatistics> paragraphStatistics = getParagraphStatistics(textRequest);
         TextResponse textResponse = getTextResponse(paragraphStatistics);
+
         final long end = System.currentTimeMillis();
         textResponse.setTotalTime(end - start);
         return textResponse;
     }
 
+    private List<ParagraphStatistics> getParagraphStatistics (TextRequest textRequest) {
+        List<CompletableFuture<List<ParagraphStatistics>>> apiCalls = new ArrayList<>();
+        for (String path : apiPathGenerator.getPaths(textRequest)) {
+            apiCalls.add(callApiAndAnalize(path));
+        }
+        return apiCalls.stream()
+                .map(CompletableFuture::join)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+    }
+
     private CompletableFuture<List<ParagraphStatistics>> callApiAndAnalize (String path) {
-        return new ApiClient().request(
-                path,
-                response -> new ApiResponseProcessor(response).getParagraphStatistics()
+        return apiClient.request(path).thenApply(
+            response -> new ApiResponseProcessor(response).getParagraphStatistics()
         );
     }
-    
+
     private TextResponse getTextResponse (List<ParagraphStatistics> paragraphStatistics) {
         TextResponse textResponse = new TextResponse();
-        
+
         Map<String, Integer> totalWordCounts = new HashMap<>();
         Long timeSum = 0L;
         Integer sizeSum = 0;
