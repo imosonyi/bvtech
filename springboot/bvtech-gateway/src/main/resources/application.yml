@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 8081
 
 spring:
   application:
@@ -8,7 +8,7 @@ spring:
     gateway:
       routes:
       - id: analyzerModule
-        uri: http://bvtech-analyzer:8081/
+        uri: http://bvtech-analyzer:8083/
         predicates:
         - Path=/betvictor/text/**
       - id: dbModule
