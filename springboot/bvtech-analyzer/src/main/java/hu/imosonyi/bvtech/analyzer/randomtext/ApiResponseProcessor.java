@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
 
 import hu.imosonyi.bvtech.analyzer.dto.ApiResponse;
 
@@ -15,7 +13,6 @@ import hu.imosonyi.bvtech.analyzer.dto.ApiResponse;
  *
  * @author István Mosonyi
  */
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class ApiResponseProcessor {
 
     private static final String DELIMITER = "\r";

@@ -1,14 +1,32 @@
 version: "3.7"
 services:
+  mysql:
+    container_name: mysql-container
+    image: mysql:latest
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bvtech
+      MYSQL_USER: bvtech
+      MYSQL_PASSWORD: bvtech
+  jms:
+    container_name: active-mq
+    image: rmohr/activemq:latest
+    ports:
+      - 61616:61616
+      - 8161:8161
   analyzer:
     container_name: bvtech-analyzer
     build: ./bvtech-analyzer
     depends_on:
+      - mysql
       - jms
   db:
     container_name: bvtech-db
     build: ./bvtech-db
     depends_on:
+      - mysql
       - jms
   gateway:
     container_name: bvtech-gateway
@@ -18,12 +36,10 @@ services:
       - db
     ports:
       - 8083:8083
-  jms:
-    container_name: active-mq
-    image: rmohr/activemq
-    ports:
-      - 61616:61616
-      - 8161:8161
+
+volumes:
+  mysql-data:
+    name: mysql-data
 
 networks:
   default:

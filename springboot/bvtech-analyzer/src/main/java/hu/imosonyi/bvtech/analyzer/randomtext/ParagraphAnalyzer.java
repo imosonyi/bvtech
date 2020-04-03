@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
 
 /**
  * Analyzes a single paragraph from RandomText API. Trims the HTML tags,
@@ -13,7 +11,6 @@ import org.springframework.context.annotation.Scope;
  *
  * @author István Mosonyi
  */
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class ParagraphAnalyzer {
 
     private static final Integer P_START = "<p>".length();

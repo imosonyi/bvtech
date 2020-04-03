@@ -3,9 +3,6 @@ package hu.imosonyi.bvtech.analyzer.randomtext;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-
 import hu.imosonyi.bvtech.analyzer.dto.TextRequest;
 
 /**
@@ -14,7 +11,6 @@ import hu.imosonyi.bvtech.analyzer.dto.TextRequest;
  *
  * @author István Mosonyi
  */
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class ApiPathGenerator {
 
     /**
