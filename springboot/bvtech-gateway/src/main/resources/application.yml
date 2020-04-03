@@ -1,0 +1,17 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: bvtech-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: analyzerModule
+        uri: http://bvtech-analyzer:8081/
+        predicates:
+        - Path=/betvictor/text/**
+      - id: dbModule
+        uri: http://bvtech-db:8082/
+        predicates:
+        - Path=/betvictor/history/**

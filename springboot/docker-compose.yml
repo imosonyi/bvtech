@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+  analyzer:
+    container_name: bvtech-analyzer
+    build: ./bvtech-analyzer
+    depends_on:
+      - jms
+  db:
+    container_name: bvtech-db
+    build: ./bvtech-db
+    depends_on:
+      - jms
+  gateway:
+    container_name: bvtech-gateway
+    build: ./bvtech-gateway
+    depends_on:
+      - analyzer
+      - db
+    ports:
+      - 8083:8083
+  jms:
+    container_name: active-mq
+    image: rmohr/activemq
+    ports:
+      - 61616:61616
+      - 8161:8161
+
+networks:
+  default:
+    name: bvtech
+    driver: bridge
