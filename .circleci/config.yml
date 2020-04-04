@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  build-bvtech-jakartaee:
+  build:
     docker:
-      - image: maven:latest
+      - image: mosonyi15/maven-node
 
     working_directory: ~/repo
 
@@ -13,71 +13,100 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
+
+      # Build Jakarta EE application
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "bvtech-jakartaee/pom.xml" }}
-            # Fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - m2-jakartaee-{{ checksum "bvtech-jakartaee/pom.xml" }}
+            - m2-jakartaee
 
-      # Change to project directory
-      - run: cd bvtech-jakartaee
-      
-      # Pull dependencies
-      - run: mvn dependency:go-offline
+      - run: cd bvtech-jakartaee && mvn dependency:go-offline && cd ..
 
-      # Store dependencies
       - save_cache:
+          key: m2-jakartaee-{{ checksum "bvtech-jakartaee/pom.xml" }}
           paths:
-            - ~/.m2
-          key: v1-dependencies
+            - ~/root/.m2
 
-      # Build project and run tests
-      - run: mvn clean verify
+      - run: cd bvtech-jakartaee && mvn clean verify && cd ..
 
-      # Store artifacts
       - store_artifacts:
           path: bvtech-jakartaee/target/bvtech-jakartaee.war
 
-      # Store test results
       - store_test_results:
           path: bvtech-jakartaee/target/site
 
-  build-bvtech-springboot-analyzer:
-    docker:
-      - image: maven:latest
 
-    working_directory: ~/repo
-
-    environment:
-      # JVM maximum heap limit
-      MAVEN_OPTS: -Xmx3200m
-
-    steps:
-      - checkout
-
-      # Download and cache dependencies
+      # Build Spring Boot analyzer microservice
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "bvtech-springboot/bvtech-analyzer/pom.xml" }}
-            # Fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - m2-springboot-analyzer-{{ checksum "bvtech-springboot/bvtech-analyzer/pom.xml" }}
+            - m2-springboot-analyzer
 
-      # Change to project directory
-      - run: cd bvtech-springboot/bvtech-analyzer
-      
-      # Pull dependencies
-      - run: mvn dependency:go-offline
+      - run: cd bvtech-springboot/bvtech-analyzer && mvn dependency:go-offline && cd ../..
 
-      # Store dependencies
       - save_cache:
+          key: m2-springboot-analyzer-{{ checksum "bvtech-springboot/bvtech-analyzer/pom.xml" }}
           paths:
-            - ~/.m2
-          key: v1-dependencies
+            - ~/root/.m2
 
-      # Build project and run tests
-      - run: mvn clean verify
+      - run: cd bvtech-springboot/bvtech-analyzer && mvn clean verify && cd ../..
 
-      # Store artifacts
       - store_artifacts:
-          path: bvtech-springboot/bvtech-analyzer/target/bvtech-springboot-analyzer.war
+          path: bvtech-springboot/bvtech-analyzer/target/bvtech-analyzer.jar
+
+
+      # Build Spring Boot database microservice
+      - restore_cache:
+          keys:
+            - m2-springboot-db-{{ checksum "bvtech-springboot/bvtech-db/pom.xml" }}
+            - m2-springboot-db
+
+      - run: cd bvtech-springboot/bvtech-db && mvn dependency:go-offline && cd ../..
+
+      - save_cache:
+          key: m2-springboot-db-{{ checksum "bvtech-springboot/bvtech-db/pom.xml" }}
+          paths:
+            - ~/root/.m2
+
+      - run: cd bvtech-springboot/bvtech-db && mvn clean verify && cd ../..
+
+      - store_artifacts:
+          path: bvtech-springboot/bvtech-db/target/bvtech-db.jar
+
+
+      # Build Spring Boot gateway microservice
+      - restore_cache:
+          keys:
+            - m2-springboot-gateway-{{ checksum "bvtech-springboot/bvtech-gateway/pom.xml" }}
+            - m2-springboot-gateway
+
+      - run: cd bvtech-springboot/bvtech-gateway && mvn dependency:go-offline && cd ../..
+
+      - save_cache:
+          key: m2-springboot-gateway-{{ checksum "bvtech-springboot/bvtech-gateway/pom.xml" }}
+          paths:
+            - ~/root/.m2
+
+      - run: cd bvtech-springboot/bvtech-gateway && mvn clean verify && cd ../..
+
+      - store_artifacts:
+          path: bvtech-springboot/bvtech-gateway/target/bvtech-gateway.jar
+
+
+      # Build Angular application
+      - restore_cache:
+          keys:
+            - npm-angular-{{ checksum "bvtech-angular/package-lock.json" }}
+            - npm-angular
+
+      - run: cd bvtech-angular && npm install && cd ..
+
+      - save_cache:
+          key: npm-angular-{{ checksum "bvtech-angular/package-lock.json" }}
+          paths:
+            - bvtech-angular/node_modules
+
+      - run: cd bvtech-angular && npm run build && cd ..
+
+      - store_artifacts:
+          path: bvtech-angular/dist/bvtech-angular
