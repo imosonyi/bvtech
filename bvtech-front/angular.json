@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bvtech-front": {
+    "bvtech-angular": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bvtech-front",
+            "outputPath": "dist/bvtech-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bvtech-front:build"
+            "browserTarget": "bvtech-angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bvtech-front:build:production"
+              "browserTarget": "bvtech-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bvtech-front:build"
+            "browserTarget": "bvtech-angular:build"
           }
         },
         "test": {
@@ -106,15 +106,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "bvtech-front:serve"
+            "devServerTarget": "bvtech-angular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "bvtech-front:serve:production"
+              "devServerTarget": "bvtech-angular:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "bvtech-front"
+  "defaultProject": "bvtech-angular"
 }
