@@ -1,0 +1,14 @@
+# Execute the following commands in batch
+batch
+
+# Add MySQL JDBC connector module
+module add --name=com.mysql --resources=/opt/jboss/wildfly/config/mysql-connector-java-8.0.19.jar --dependencies=javax.api,javax.transaction.api,javax.servlet.api
+
+# Add MySQL driver
+/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-class-name=com.mysql.cj.jdbc.Driver)
+
+# Add MySQL datasource
+data-source add --name=bvtech-ds --driver-name=mysql --jndi-name=java:jboss/datasources/bvtech-ds --connection-url=jdbc:mysql://bvtech-mysql:3306/bvtech?useUnicode=true&characterEncoding=UTF-8 --user-name=bvtech --password=bvtech --enabled=true
+
+# Execute the batch
+run-batch

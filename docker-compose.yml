@@ -1,0 +1,54 @@
+version: "3.7"
+services:
+  bvtech-mysql:
+    container_name: bvtech-mysql
+    build: ./bvtech-mysql
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+  bvtech-active-mq:
+    container_name: bvtech-active-mq
+    image: rmohr/activemq:latest
+    ports:
+      - 61616:61616
+      - 8161:8161
+  bvtech-jakartaee:
+    container_name: bvtech-jakartaee
+    build: ./bvtech-jakartaee
+    ports:
+      - 8080:8080
+    depends_on:
+      - bvtech-mysql
+    environment:
+      - WAIT_HOSTS=bvtech-mysql:3306
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+  bvtech-springboot-db:
+    container_name: bvtech-springboot-db
+    build: ./bvtech-springboot/bvtech-db
+    depends_on:
+      - bvtech-mysql
+    environment:
+      - WAIT_HOSTS=bvtech-mysql:3306
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+  bvtech-springboot-analyzer:
+    container_name: bvtech-springboot-analyzer
+    build: ./bvtech-springboot/bvtech-analyzer
+  bvtech-springboot-gateway:
+    container_name: bvtech-springboot-gateway
+    build: ./bvtech-springboot/bvtech-gateway
+    ports:
+      - 8081:8081
+
+volumes:
+  mysql-data:
+    name: mysql-data
+
+networks:
+  default:
+    name: bvtech
+    driver: bridge
