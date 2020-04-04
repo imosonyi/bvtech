@@ -75,7 +75,7 @@ public class ApiServiceImpl implements ApiService {
                 Integer newCount = totalWordCounts.getOrDefault(wordCount.getKey(), 0)
                         + wordCount.getValue();
                 totalWordCounts.put(word, newCount);
-                if (newCount > mostFrequentCount) {
+                if (newCount > mostFrequentCount && !word.equals(mostFrequent)) {
                     mostFrequentCount = newCount;
                     mostFrequent = word;
                 }
