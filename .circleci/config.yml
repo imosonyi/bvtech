@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: mosonyi15/maven-node
+      - image: mosonyi15/maven-node:1.0
 
     working_directory: ~/repo
 
