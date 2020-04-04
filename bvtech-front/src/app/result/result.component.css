@@ -1,0 +1,21 @@
+#result-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px;
+    padding: 10px;
+    background-color: #303030;
+    border-radius: 10px;
+}
+
+.label, .value {
+    background-color: #303030;
+}
+
+.label {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.value {
+    color: #CCCCCC;
+}

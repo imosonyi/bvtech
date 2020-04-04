@@ -1,0 +1,56 @@
+#card-container {
+    width: 400px;
+    height: 150px;
+    border-radius: 15px;
+}
+
+#card-container.active {
+    background-color: #303030;
+}
+
+#card-container * {
+    background-color: transparent;
+}
+
+#image {
+    max-width: 100px;
+    max-height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: grayscale(100%);
+}
+
+#image.active {
+    filter: grayscale(0%);
+}
+
+#card-image {
+    position: relative;
+}
+
+#card-image, #card-content {
+    float: left;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+}
+
+#card-content {
+    line-height: 30px;
+    color: #AAAAAA;
+    padding: 15px;
+}
+
+.active #card-content {
+    color: #FFFFFF;
+}
+
+.active #red {
+    color: #FF0000;
+}
+
+.active #green {
+    color: #00FF00;
+}

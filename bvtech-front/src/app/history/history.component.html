@@ -1,0 +1,14 @@
+<div id="history-container">
+    <div id="history-header">
+        <div class="value">freq_word</div>
+        <div class="value">avg_paragraph_size</div>
+        <div class="value">avg_paragraph_processing_time</div>
+        <div class="value">total_processing_time</div>
+    </div>
+    <div class="history" *ngFor="let history of (historyList | async)">
+        <div class="value">{{ history.freq_word }}</div>
+        <div class="value">{{ history.avg_paragraph_size }}</div>
+        <div class="value">{{ history.avg_paragraph_processing_time }}</div>
+        <div class="value">{{ history.total_processing_time }}</div>
+    </div>
+</div>

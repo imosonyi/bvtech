@@ -1,0 +1,16 @@
+#technology-selector-container {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#technology-selector-card-left, #technology-selector-switch, #technology-selector-card-right {
+    height: 100%;
+}
+
+#technology-selector-switch {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

@@ -1,0 +1,12 @@
+<div id="input-container">
+    <label for="p_start">p_start</label>
+    <input id="p_start" name="p_start" type="number" placeholder="1" [(ngModel)]="textRequest.p_start" required />
+    <label for="p_end">p_end</label>
+    <input id="p_end" name="p_end" type="number" placeholder="100" [(ngModel)]="textRequest.p_end" required />
+    <label for="w_count_min">w_count_min</label>
+    <input id="w_count_min" name="w_count_min" type="number" placeholder="25" [(ngModel)]="textRequest.w_count_min" required />
+    <label for="w_count_max">w_count_max</label>
+    <input id="w_count_max" name="w_count_max" type="number" placeholder="50" [(ngModel)]="textRequest.w_count_max" required />
+    <button id="button" type="submit" (click)="send()">Send</button>
+</div>
+<app-result [response]="response" [isLoading]="isLoading"></app-result>

@@ -1,0 +1,69 @@
+#input-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
+label, input {
+    color: white;
+}
+
+label {
+    text-align: right;
+    line-height: 32px;
+}
+
+input {
+    width: 12%;
+    height: 32px;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #FF0000;
+}
+
+input:valid {
+    border-bottom: 1px solid #00FF00;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#button {
+    border-radius: 10px;
+}
+
+#button, #button:visited {
+    border: none;
+    height: 32px;
+    color: white;
+    background-color: #4CB6C9;
+    width: 80px;
+    font-size: 18px;
+    outline: none;
+    outline: 1px solid transparent;
+}
+
+#button:hover {
+    border: 1px solid #00FF00;
+    cursor: pointer;
+}
+
+#button:active:hover {
+    border: 1px solid #00FF00;
+    background-color: #3BA5B8;
+    cursor: pointer;
+}

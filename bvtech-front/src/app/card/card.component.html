@@ -1,0 +1,12 @@
+<div id="card-container" [ngClass]="active ? 'active' : ''">
+    <div id="card-image">
+        <img id="image" src="{{ img }}" [ngClass]="active ? 'active' : ''">
+    </div>
+    <div id="card-content">
+        <h2>{{ technology }}</h2>
+        <h4>:{{ port }}</h4>
+        <hr>
+        <p id="green">{{ pro }}</p>
+        <p id="red">{{ contra }}</p>
+    </div>
+</div>

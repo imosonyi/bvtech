@@ -1,0 +1,27 @@
+#history-container {
+    margin: 20px;
+}
+
+#history-header {
+    color: #FFFFFF;
+}
+
+.history {
+    color: #CCCCCC;
+}
+
+#history-header, .history {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#history-header .value {
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.value {
+    width: 20%;
+    text-align: center;
+    padding: 10px;
+}

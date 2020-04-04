@@ -1,0 +1,11 @@
+<div id="result-container" *ngIf="response">
+    <div class="label">freq_word</div>
+    <div class="value">{{ response.freq_word }}</div>
+    <div class="label">avg_paragraph_size</div>
+    <div class="value">{{ response.avg_paragraph_size }}</div>
+    <div class="label">avg_paragraph_processing_time</div>
+    <div class="value">{{ response.avg_paragraph_processing_time }}</div>
+    <div class="label">total_processing_time</div>
+    <div class="value">{{ response.total_processing_time }}</div>
+</div>
+<app-loading *ngIf="isLoading"></app-loading>
