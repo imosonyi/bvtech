@@ -52,7 +52,7 @@ jobs:
       - run: cd bvtech-springboot/bvtech-analyzer && mvn clean verify && cd ../..
 
       - store_artifacts:
-          path: bvtech-springboot/bvtech-analyzer/target/bvtech-analyzer.jar
+          path: bvtech-springboot/bvtech-analyzer/target/bvtech-springboot-analyzer.jar
 
 
       # Build Spring Boot database microservice
@@ -71,7 +71,7 @@ jobs:
       - run: cd bvtech-springboot/bvtech-db && mvn clean verify && cd ../..
 
       - store_artifacts:
-          path: bvtech-springboot/bvtech-db/target/bvtech-db.jar
+          path: bvtech-springboot/bvtech-db/target/bvtech-springboot-db.jar
 
 
       # Build Spring Boot gateway microservice
@@ -90,7 +90,7 @@ jobs:
       - run: cd bvtech-springboot/bvtech-gateway && mvn clean verify && cd ../..
 
       - store_artifacts:
-          path: bvtech-springboot/bvtech-gateway/target/bvtech-gateway.jar
+          path: bvtech-springboot/bvtech-gateway/target/bvtech-springboot-gateway.jar
 
 
       # Build Angular application
