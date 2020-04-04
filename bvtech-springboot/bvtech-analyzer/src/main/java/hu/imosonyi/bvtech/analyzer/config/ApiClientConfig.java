@@ -8,9 +8,14 @@ import org.springframework.context.annotation.Scope;
 
 import hu.imosonyi.bvtech.analyzer.randomtext.ApiClient;
 
+/**
+ * Configures {@link ApiClient} bean.
+ *
+ * @author István Mosonyi
+ */
 @Configuration
 public class ApiClientConfig {
-    
+
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public ApiClient apiClient (RestTemplateBuilder builder) {

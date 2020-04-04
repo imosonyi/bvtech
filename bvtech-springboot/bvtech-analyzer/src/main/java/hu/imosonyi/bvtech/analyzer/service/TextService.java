@@ -8,6 +8,11 @@ import hu.imosonyi.bvtech.analyzer.dto.TextResponse;
 import hu.imosonyi.bvtech.analyzer.jms.AnalysisReportPublisher;
 import hu.imosonyi.bvtech.analyzer.randomtext.TextResponseCalculator;
 
+/**
+ * Service layer for handling the requests coming in /betvictor/text.
+ *
+ * @author István Mosonyi
+ */
 @Service
 public class TextService {
 
@@ -18,10 +23,11 @@ public class TextService {
     private AnalysisReportPublisher analysisReportPublisher;
 
     /**
-     * TODO.
-     * 
-     * @param textRequest TODO.
-     * @return
+     * Delegates the analysis calculation to {@link TextResponseCalculator} and stores the
+     * result in the database.
+     *
+     * @param textRequest The /betvictor/text request to analyse.
+     * @return Analysis report of the paragraphs.
      */
     public TextResponse getStatistics (TextRequest textRequest) {
         TextResponse response = calculator.calculate(textRequest);

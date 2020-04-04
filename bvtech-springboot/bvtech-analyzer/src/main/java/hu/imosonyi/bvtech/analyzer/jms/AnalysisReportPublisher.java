@@ -12,6 +12,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import hu.imosonyi.bvtech.analyzer.dto.TextResponse;
 
+/**
+ * Sends the analysis report to the db microservice.
+ *
+ * @author István Mosonyi
+ */
 @Service
 public class AnalysisReportPublisher {
 
@@ -20,10 +25,11 @@ public class AnalysisReportPublisher {
 
     @Autowired
     private JmsTemplate jmsTemplate;
-    
+
     /**
-     * TODO.
-     * @param textResponse TODO.
+     * Sends the analysis report in JSON string format via JMS.
+     *
+     * @param textResponse Analysis report to send.
      */
     public void send(TextResponse textResponse) {
         try {
@@ -32,5 +38,5 @@ public class AnalysisReportPublisher {
             e.printStackTrace();
         }
     }
-    
+
 }

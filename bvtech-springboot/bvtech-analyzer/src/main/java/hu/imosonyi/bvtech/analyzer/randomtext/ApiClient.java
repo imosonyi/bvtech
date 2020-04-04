@@ -9,6 +9,11 @@ import org.springframework.web.client.RestTemplate;
 
 import hu.imosonyi.bvtech.analyzer.dto.ApiResponse;
 
+/**
+ * Creates the asynchronous call to the RandomText API.
+ *
+ * @author István Mosonyi
+ */
 public class ApiClient {
 
     private final RestTemplate restTemplate;
@@ -17,6 +22,12 @@ public class ApiClient {
         restTemplate = restTemplateBuilder.build();
     }
 
+    /**
+     * Make request to RandomText API with the given path.
+     *
+     * @param path RandomText API URL path.
+     * @return Asynchronous response from the API.
+     */
     @Async
     public CompletableFuture<ApiResponse> reqest (String path) {
         return CompletableFuture.supplyAsync(getRequest(path));

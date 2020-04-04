@@ -7,6 +7,11 @@ import org.springframework.context.annotation.Scope;
 
 import hu.imosonyi.bvtech.analyzer.randomtext.ParagraphAnalyzer;
 
+/**
+ * Configures {@link ParagraphAnalyzer} bean.
+ *
+ * @author István Mosonyi
+ */
 @Configuration
 public class ParagraphAnalyzerConfig {
 

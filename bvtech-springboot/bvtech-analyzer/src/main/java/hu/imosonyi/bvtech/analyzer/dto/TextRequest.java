@@ -20,11 +20,12 @@ public class TextRequest implements Serializable {
     private Integer max;
 
     /**
-     * TODO.
-     * @param start TODO.
-     * @param end TODO.
-     * @param min TODO.
-     * @param max TODO.
+     * Constructor.
+     *
+     * @param start Start number of paragraphs.
+     * @param end Last number of paragraphs.
+     * @param min Minimum word count in paragraphs.
+     * @param max Maximum word count in paragraphs.
      */
     public TextRequest (Integer start, Integer end, Integer min, Integer max) {
         this.start = start;

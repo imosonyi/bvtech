@@ -7,6 +7,11 @@ import org.springframework.context.annotation.Scope;
 
 import hu.imosonyi.bvtech.analyzer.randomtext.ApiPathGenerator;
 
+/**
+ * Configures {@link ApiPathGenerator} bean.
+ *
+ * @author István Mosonyi
+ */
 @Configuration
 public class ApiPathGeneratorConfig {
 

@@ -8,6 +8,11 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 import hu.imosonyi.bvtech.analyzer.randomtext.TextResponseCalculator;
 
+/**
+ * Configures {@link TextResponseCalculator} bean.
+ *
+ * @author István Mosonyi
+ */
 @Configuration
 @EnableAsync
 public class TextResponseCalculatorConfig {
@@ -17,5 +22,5 @@ public class TextResponseCalculatorConfig {
     public TextResponseCalculator textResponseCalculator () {
         return new TextResponseCalculator();
     }
-    
+
 }

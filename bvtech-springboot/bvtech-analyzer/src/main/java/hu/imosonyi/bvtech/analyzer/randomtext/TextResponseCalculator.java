@@ -12,8 +12,8 @@ import hu.imosonyi.bvtech.analyzer.dto.TextRequest;
 import hu.imosonyi.bvtech.analyzer.dto.TextResponse;
 
 /**
- * TODO.
- * 
+ * Calculates the analysis report.
+ *
  * @author István Mosonyi
  */
 public class TextResponseCalculator {
@@ -30,10 +30,10 @@ public class TextResponseCalculator {
     private ApiPathGenerator apiPathGenerator;
 
     /**
-     * TODO.
-     * 
-     * @param textRequest TODO.
-     * @return
+     * Creates the analysis report for the /betvictor/text request.
+     *
+     * @param textRequest The /betvictor/text request to analyse.
+     * @return Analysis report of the paragraphs.
      */
     public TextResponse calculate (TextRequest textRequest) {
         apiStatistics = new ApiStatistics();
