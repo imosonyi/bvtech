@@ -1,5 +1,7 @@
 package hu.imosonyi.bvtech.db.jms;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.annotation.JmsListener;
@@ -23,6 +25,8 @@ public class AnalysisReportConsumer {
 
     @Autowired
     private AnalysisReportRepository analysisReportRepository;
+ 
+    private Logger logger = LoggerFactory.getLogger(AnalysisReportConsumer.class);
 
     private TextResponseToAnalysisReportConverter converter =
             new TextResponseToAnalysisReportConverter();
@@ -38,7 +42,7 @@ public class AnalysisReportConsumer {
             TextResponse textResponse = new ObjectMapper().readValue(message, TextResponse.class);
             analysisReportRepository.save(converter.convert(textResponse));
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.warn("Could not parse JMS message: " + message, e);
         }
     }
 

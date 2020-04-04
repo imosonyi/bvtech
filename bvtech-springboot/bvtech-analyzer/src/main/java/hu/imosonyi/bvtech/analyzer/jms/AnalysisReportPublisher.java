@@ -2,6 +2,8 @@ package hu.imosonyi.bvtech.analyzer.jms;
 
 import javax.jms.Queue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.JmsException;
 import org.springframework.jms.core.JmsTemplate;
@@ -26,6 +28,8 @@ public class AnalysisReportPublisher {
     @Autowired
     private JmsTemplate jmsTemplate;
 
+    private Logger logger = LoggerFactory.getLogger(AnalysisReportPublisher.class);
+
     /**
      * Sends the analysis report in JSON string format via JMS.
      *
@@ -35,7 +39,7 @@ public class AnalysisReportPublisher {
         try {
             jmsTemplate.convertAndSend(queue, new ObjectMapper().writeValueAsString(textResponse));
         } catch (JmsException | JsonProcessingException e) {
-            e.printStackTrace();
+            logger.warn("Could not send JMS message: " + textResponse, e);
         }
     }
 
