@@ -16,17 +16,17 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "jakartaee/pom.xml" }}
-            - v1-dependencies-{{ checksum "springboot/bvtech-analyzer/pom.xml" }}
-            - v1-dependencies-{{ checksum "springboot/bvtech-db/pom.xml" }}
-            - v1-dependencies-{{ checksum "springboot/bvtech-gateway/pom.xml" }}
+            - v1-dependencies-{{ checksum "bvtech-jakartaee/pom.xml" }}
+            - v1-dependencies-{{ checksum "bvtech-springboot/bvtech-analyzer/pom.xml" }}
+            - v1-dependencies-{{ checksum "bvtech-springboot/bvtech-db/pom.xml" }}
+            - v1-dependencies-{{ checksum "bvtech-springboot/bvtech-gateway/pom.xml" }}
             # Fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: cd jakartaee && mvn dependency:go-offline && cd ..
-      - run: cd springboot/bvtech-analyzer && mvn dependency:go-offline && cd ../..
-      - run: cd springboot/bvtech-db && mvn dependency:go-offline && cd ../..
-      - run: cd springboot/bvtech-gateway && mvn dependency:go-offline && cd ../..
+      - run: cd bvtech-jakartaee && mvn dependency:go-offline && cd ..
+      - run: cd bvtech-springboot/bvtech-analyzer && mvn dependency:go-offline && cd ../..
+      - run: cd bvtech-springboot/bvtech-db && mvn dependency:go-offline && cd ../..
+      - run: cd bvtech-springboot/bvtech-gateway && mvn dependency:go-offline && cd ../..
 
       - save_cache:
           paths:
@@ -34,24 +34,24 @@ jobs:
           key: v1-dependencies
 
       # Build project and run tests
-      - run: cd jakartaee && mvn verify && cd ..
-      - run: cd springboot/bvtech-analyzer && mvn verify && cd ../..
-      - run: cd springboot/bvtech-db && mvn verify && cd ../..
-      - run: cd springboot/bvtech-gateway && mvn verify && cd ../..
+      - run: cd bvtech-jakartaee && mvn verify && cd ..
+      - run: cd bvtech-springboot/bvtech-analyzer && mvn verify && cd ../..
+      - run: cd bvtech-springboot/bvtech-db && mvn verify && cd ../..
+      - run: cd bvtech-springboot/bvtech-gateway && mvn verify && cd ../..
 
       # Store artifacts
       - store_artifacts:
-          path: jakartaee/target/bvtech-jakartaee.war
+          path: bvtech-jakartaee/target/bvtech-jakartaee.war
       - store_artifacts:
-          path: springboot/bvtech-analyzer/target/bvtech-analyzer.jar
+          path: bvtech-springboot/bvtech-analyzer/target/bvtech-analyzer.jar
       - store_artifacts:
-          path: springboot/bvtech-db/target/bvtech-db.jar
+          path: bvtech-springboot/bvtech-db/target/bvtech-db.jar
       - store_artifacts:
-          path: springboot/bvtech-gateway/target/bvtech-gateway.jar
+          path: bvtech-springboot/bvtech-gateway/target/bvtech-gateway.jar
 
       # Store test results
       - store_test_results:
-          path: jakartaee/target/site
+          path: bvtech-jakartaee/target/site
       #- store_test_results:
       #    path: springboot/bvtech-analyzer/target/site
       #- store_test_results:
