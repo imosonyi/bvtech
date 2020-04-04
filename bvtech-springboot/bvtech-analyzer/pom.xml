@@ -47,7 +47,7 @@
 
 	<build>
 		<!-- Final JAR name -->
-		<finalName>bvtech-analyzer</finalName>
+		<finalName>bvtech-springboot-analyzer</finalName>
 
 		<plugins>
 			<!-- Compile code with JDK11 -->
@@ -69,8 +69,8 @@
 			<plugin>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<configuration>
-					<configLocation>../../checkstyle/checkstyle.xml</configLocation>
-					<suppressionsLocation>../../checkstyle/suppressions.xml</suppressionsLocation>
+					<configLocation>checkstyle/checkstyle.xml</configLocation>
+					<suppressionsLocation>checkstyle/suppressions.xml</suppressionsLocation>
 					<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
 					<encoding>UTF-8</encoding>
 					<consoleOutput>true</consoleOutput>

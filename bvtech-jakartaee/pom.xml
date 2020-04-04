@@ -33,7 +33,6 @@
 		<version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
 		<version.maven-surefire-plugin>3.0.0-M4</version.maven-surefire-plugin>
 		<version.maven-failsafe-plugin>3.0.0-M4</version.maven-failsafe-plugin>
-		<version.build-helper-maven-plugin>3.1.0</version.build-helper-maven-plugin>
 		<version.jacoco-maven-plugin>0.8.5</version.jacoco-maven-plugin>
 	</properties>
 
@@ -101,40 +100,6 @@
 				</configuration>
 			</plugin>
 
-			<!-- Add integration test sources and resources (src/it/java, src/it/resource) -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>generate-it-sources</id>
-						<phase>generate-test-sources</phase>
-						<goals>
-							<goal>add-test-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>src/it/java</source>
-							</sources>
-						</configuration>
-					</execution>
-					<execution>
-						<id>generate-it-resources</id>
-						<phase>generate-test-resources</phase>
-						<goals>
-							<goal>add-test-resource</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>src/it/resources</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
 			<!-- Create war file. -->
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
@@ -145,8 +110,8 @@
 			<plugin>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<configuration>
-					<configLocation>../checkstyle/checkstyle.xml</configLocation>
-					<suppressionsLocation>../checkstyle/suppressions.xml</suppressionsLocation>
+					<configLocation>checkstyle/checkstyle.xml</configLocation>
+					<suppressionsLocation>checkstyle/suppressions.xml</suppressionsLocation>
 					<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
 					<encoding>UTF-8</encoding>
 					<consoleOutput>true</consoleOutput>
@@ -201,11 +166,6 @@
 					<artifactId>jacoco-maven-plugin</artifactId>
 					<version>${version.jacoco-maven-plugin}</version>
 				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>build-helper-maven-plugin</artifactId>
-					<version>${version.build-helper-maven-plugin}</version>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -234,14 +194,6 @@
 						<configuration>
 							<argLine>${failsafeArgLine}</argLine>
 						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>integration-test</goal>
-									<goal>verify</goal>
-								</goals>
-							</execution>
-						</executions>
 					</plugin>
 
 					<!-- Configure JaCoCo code coverage reports -->
@@ -265,25 +217,6 @@
 								<phase>test</phase>
 								<goals>
 									<goal>report</goal>
-								</goals>
-							</execution>
-							<!-- Prepare JaCoCo agent for integration tests -->
-							<execution>
-								<id>jacoco-prepare-it</id>
-								<phase>validate</phase>
-								<goals>
-									<goal>prepare-agent-integration</goal>
-								</goals>
-								<configuration>
-									<propertyName>jacoco.agent</propertyName>
-								</configuration>
-							</execution>
-							<!-- Create integration test code coverage report (target/site/jacoco-it) -->
-							<execution>
-								<id>jacoco-report-it</id>
-								<phase>post-integration-test</phase>
-								<goals>
-									<goal>report-integration</goal>
 								</goals>
 							</execution>
 						</executions>

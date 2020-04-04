@@ -7,6 +7,13 @@
 	<artifactId>bvtech-gateway</artifactId>
 	<version>1-SNAPSHOT</version>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.6.RELEASE</version>
+		<relativePath />
+	</parent>
+
 	<properties>
 		<!-- Project settings -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -14,7 +21,6 @@
 		<maven.compiler.target>11</maven.compiler.target>
 
 		<!-- Spring Boot dependency versions -->
-		<version.spring-boot>2.2.6.RELEASE</version.spring-boot>
 		<version.spring-cloud-dependencies>Hoxton.SR3</version.spring-cloud-dependencies>
 
 		<!-- Plugin versions -->
@@ -45,7 +51,7 @@
 
 	<build>
 		<!-- Final JAR name -->
-		<finalName>bvtech-gateway</finalName>
+		<finalName>bvtech-springboot-gateway</finalName>
 
 		<plugins>
 			<!-- Compile code with JDK11 -->
@@ -61,7 +67,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${version.spring-boot}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -76,8 +81,8 @@
 			<plugin>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<configuration>
-					<configLocation>../../checkstyle/checkstyle.xml</configLocation>
-					<suppressionsLocation>../../checkstyle/suppressions.xml</suppressionsLocation>
+					<configLocation>checkstyle/checkstyle.xml</configLocation>
+					<suppressionsLocation>checkstyle/suppressions.xml</suppressionsLocation>
 					<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
 					<encoding>UTF-8</encoding>
 					<consoleOutput>true</consoleOutput>

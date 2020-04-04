@@ -1,26 +1,24 @@
 version: "3.7"
 services:
-  mysql:
-    container_name: mysql-jakartaee
-    image: mysql:latest
+  bvtech-mysql:
+    container_name: bvtech-mysql
+    build: ../bvtech-mysql
     volumes:
       - mysql-data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: bvtech
-      MYSQL_USER: bvtech
-      MYSQL_PASSWORD: bvtech
     ports:
       - 3306:3306
-  wildfly:
-    container_name: wildfly-container
+  bvtech-jakartaee:
+    container_name: bvtech-jakartaee
     build: ./
-    environment:
-      - MYSQL_URI=mysql:3306
     ports:
       - 8080:8080
     depends_on:
-      - mysql
+      - bvtech-mysql
+    environment:
+      - WAIT_HOSTS=bvtech-mysql:3306
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
 
 volumes:
   mysql-data:

@@ -1,39 +1,34 @@
 version: "3.7"
 services:
-  mysql:
-    container_name: mysql-springboot
-    image: mysql:latest
+  bvtech-mysql:
+    container_name: bvtech-mysql
+    build: ../bvtech-mysql
     volumes:
       - mysql-data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: bvtech
-      MYSQL_USER: bvtech
-      MYSQL_PASSWORD: bvtech
-  jms:
-    container_name: active-mq
+    ports:
+      - 3306:3306
+  bvtech-active-mq:
+    container_name: bvtech-active-mq
     image: rmohr/activemq:latest
     ports:
       - 61616:61616
       - 8161:8161
-  analyzer:
-    container_name: bvtech-analyzer
+  bvtech-springboot-analyzer:
+    container_name: bvtech-springboot-analyzer
     build: ./bvtech-analyzer
-    depends_on:
-      - mysql
-      - jms
-  db:
-    container_name: bvtech-db
+  bvtech-springboot-db:
+    container_name: bvtech-springboot-db
     build: ./bvtech-db
     depends_on:
-      - mysql
-      - jms
-  gateway:
-    container_name: bvtech-gateway
+      - bvtech-mysql
+    environment:
+      - WAIT_HOSTS=bvtech-mysql:3306
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+  bvtech-springboot-gateway:
+    container_name: bvtech-springboot-gateway
     build: ./bvtech-gateway
-    depends_on:
-      - analyzer
-      - db
     ports:
       - 8081:8081
 

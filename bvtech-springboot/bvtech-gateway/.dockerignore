@@ -1,0 +1,9 @@
+target
+.checkstyle
+.classpath
+.dockerignore
+.project
+.settings/
+docker-compose*
+Dockerfile*
+

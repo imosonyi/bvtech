@@ -43,6 +43,11 @@ services:
     build: ./bvtech-springboot/bvtech-gateway
     ports:
       - 8081:8081
+  bvtech-angular:
+    container_name: bvtech-angular
+    build: ./bvtech-angular
+    ports:
+      - 80:80
 
 volumes:
   mysql-data:

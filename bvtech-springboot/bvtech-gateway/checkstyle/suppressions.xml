@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+	<suppress checks="RegexpSingleline" files="google_checks\.xml" lines="56,113" />
+	<suppress checks="RegexpSingleline" files="releasenotes\.xml" />
+	<suppress checks="FileLength" files="TokenTypes.java|IndentationCheckTest.java" lines="1" />
+	<suppress checks="TodoComment" files=".*TodoCommentCheck\.java" />
+	<suppress checks="AbstractClassNameCheck" files="AbstractClassNameCheck.java" />
+	<suppress checks="AbstractClassNameCheck" files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|AbstractJavadocCheckTest.java|AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java" />
+	<suppress checks="ExecutableStatementCount|JavaNCSS|BooleanExpressionComplexity|NestedIfDepth|MethodLength" files="[\\/]XdocsPagesTest\.java" />
+	<suppress checks="JavadocMethod" files=".*AbstractIndentationTestSupport\.java" />
+	<suppress checks="JavadocMethod" files=".*AbstractModuleTestSupport\.java" />
+	<suppress checks="JavadocMethod" files=".*AbstractXpathTestSupport\.java" />
+	<suppress checks="JavadocMethod" files=".*AbstractModuleTestSupport\.java" />
+	<suppress checks="JavadocMethod" files=".*AbstractPathTestSupport\.java" />
+	<suppress checks="JavadocMethod" files=".*AbstractXmlTestSupport\.java" />
+	<suppress checks="MagicNumber" files="(ParseTreeTablePresentation|MainFrame)\.java" />
+	<suppress checks="MethodLength" files=".*(Generated)?Java(doc)?TokenTypesTest\.java" />
+	<suppress checks="ExecutableStatementCount" files=".*(Generated)?Java(doc)?TokenTypesTest\.java" />
+	<suppress checks="JavaNCSS" files=".*(Generated)?Java(doc)?TokenTypesTest\.java" />
+	<suppress checks="ExecutableStatementCount" files=".*IllegalInstantiationCheckTest\.java" />
+	<suppress checks="ExecutableStatementCount" files=".*Main\.java" />
+	<suppress checks="MissingDeprecated" files=".*JavadocTokenTypes\.java" />
+	<suppress checks="TrailingComment" files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|AbbreviationAsWordInNameCheckTest\.java)" />
+	<suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|XMLLogger\.java" />
+	<suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$" />
+	<suppress checks="MethodCount" files="[\\/]CommentsIndentationCheck.java$" />
+	<suppress checks="MethodCount" files="[\\/]VisibilityModifierCheck.java$" />
+	<suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$" />
+	<suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java" />
+	<suppress checks="ClassDataAbstractionCoupling" files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser)\.java" />
+	<suppress checks="ClassDataAbstractionCoupling" files="(CheckerTest|AbstractModuleTestSupport|AbstractItModuleTestSupport|CheckstyleAntTaskTest|TranslationCheckTest|LocalizedMessageTest|AbstractFileSetCheckTest|AbstractCheckTest|AutomaticBeanTest)\.java" />
+	<suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFileTest\.java" />
+	<suppress checks="ClassDataAbstractionCoupling" files="XpathFileGeneratorAuditListenerTest\.java" />
+	<suppress checks="ClassFanOutComplexity" files="[\\/]Main\.java" />
+	<suppress checks="ClassFanOutComplexity" files="CheckstyleAntTask\.java" />
+	<suppress checks="ClassFanOutComplexity" files="CheckerTest\.java" />
+	<suppress checks="ClassFanOutComplexity" files="Checker\.java" />
+	<suppress checks="ClassDataAbstractionCoupling" files="(TreeTable|MainFrame)\.java" />
+	<suppress checks="ReturnCount" files="(ConfigurationLoader|LambdaHandler)\.java" />
+	<suppress checks="ExecutableStatementCount" files="HandlerFactory\.java" />
+	<suppress id="ImportControlTest" files="[\\/]powermock[\\/]" message=".* - org\.(powermock|mockito).*" />
+	<suppress id="noSourceforgeNetLinks" files="[\\/]releasenotes.xml" />
+	<suppress id="noSourceforgeIoLinks" files="[\\/]google_style.xml" lines="31" />
+	<suppress id="noSourceforgeIoLinks" files="[\\/]sun_style.xml" lines="31" />
+	<suppress id="noSourceforgeIoLinks" files="[\\/]index.xml.vm" />
+</suppressions>
+
