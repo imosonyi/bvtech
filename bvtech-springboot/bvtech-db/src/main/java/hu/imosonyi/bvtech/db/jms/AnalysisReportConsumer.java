@@ -12,6 +12,11 @@ import hu.imosonyi.bvtech.db.dto.TextResponse;
 import hu.imosonyi.bvtech.db.repository.AnalysisReportRepository;
 import hu.imosonyi.bvtech.db.util.TextResponseToAnalysisReportConverter;
 
+/**
+ * Receives the analysis report from the analyzer microservice.
+ *
+ * @author István Mosonyi
+ */
 @Component
 @EnableJms
 public class AnalysisReportConsumer {
@@ -23,8 +28,9 @@ public class AnalysisReportConsumer {
             new TextResponseToAnalysisReportConverter();
 
     /**
-     * TODO.
-     * @param message TODO.
+     * Receive analysis report through JMS and store in the database.
+     *
+     * @param message The JMS message of {@link TextResponse} in JSON format.
      */
     @JmsListener(destination = "bvtech-db")
     public void listener (String message) {

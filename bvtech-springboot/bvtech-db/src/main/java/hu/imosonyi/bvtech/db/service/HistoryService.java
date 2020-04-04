@@ -10,6 +10,11 @@ import hu.imosonyi.bvtech.db.dto.TextResponse;
 import hu.imosonyi.bvtech.db.repository.AnalysisReportRepository;
 import hu.imosonyi.bvtech.db.util.TextResponseToAnalysisReportConverter;
 
+/**
+ * Service layer for handling the requests coming in /betvictor/history.
+ *
+ * @author István Mosonyi
+ */
 @Service
 public class HistoryService {
 
@@ -20,8 +25,9 @@ public class HistoryService {
             new TextResponseToAnalysisReportConverter();
 
     /**
-     * TODO.
-     * @return
+     * Retrieves the last 10 analysis results.
+     *
+     * @return Last 10 analysis results.
      */
     public List<TextResponse> getHistory () {
         return analysisReportRepository.findTop10ByOrderByCreatedAtDesc()

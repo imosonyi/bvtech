@@ -12,6 +12,11 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Analysis report entity.
+ *
+ * @author István Mosonyi
+ */
 @Entity
 @Table(name = "ANALYSIS_REPORT")
 public class AnalysisReport implements Serializable {
