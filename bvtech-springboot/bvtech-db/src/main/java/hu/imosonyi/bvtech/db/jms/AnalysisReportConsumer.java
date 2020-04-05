@@ -37,7 +37,7 @@ public class AnalysisReportConsumer {
      * @param message The JMS message of {@link TextResponse} in JSON format.
      */
     @JmsListener(destination = "bvtech-db")
-    public void listener (String message) {
+    public void receive (String message) {
         try {
             TextResponse textResponse = new ObjectMapper().readValue(message, TextResponse.class);
             analysisReportRepository.save(converter.convert(textResponse));

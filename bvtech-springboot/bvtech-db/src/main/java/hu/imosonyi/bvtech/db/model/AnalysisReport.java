@@ -101,4 +101,77 @@ public class AnalysisReport implements Serializable {
         createdAt = LocalDateTime.now();
     }
 
+    @Override
+    public int hashCode () {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((averageParagraphProcessingTime == null) 
+                ? 0 : averageParagraphProcessingTime.hashCode());
+        result = prime * result + ((averageParagraphSize == null) 
+                ? 0 : averageParagraphSize.hashCode());
+        result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((mostFrequentWord == null) ? 0 : mostFrequentWord.hashCode());
+        result = prime * result + ((totalProcessingTime == null) 
+                ? 0 : totalProcessingTime.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals (Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        AnalysisReport other = (AnalysisReport) obj;
+        if (averageParagraphProcessingTime == null) {
+            if (other.averageParagraphProcessingTime != null) {
+                return false;
+            }
+        } else if (!averageParagraphProcessingTime.equals(other.averageParagraphProcessingTime)) {
+            return false;
+        }
+        if (averageParagraphSize == null) {
+            if (other.averageParagraphSize != null) {
+                return false;
+            }
+        } else if (!averageParagraphSize.equals(other.averageParagraphSize)) {
+            return false;
+        }
+        if (createdAt == null) {
+            if (other.createdAt != null) {
+                return false;
+            }
+        } else if (!createdAt.equals(other.createdAt)) {
+            return false;
+        }
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
+        if (mostFrequentWord == null) {
+            if (other.mostFrequentWord != null) {
+                return false;
+            }
+        } else if (!mostFrequentWord.equals(other.mostFrequentWord)) {
+            return false;
+        }
+        if (totalProcessingTime == null) {
+            if (other.totalProcessingTime != null) {
+                return false;
+            }
+        } else if (!totalProcessingTime.equals(other.totalProcessingTime)) {
+            return false;
+        }
+        return true;
+    }
+
 }
