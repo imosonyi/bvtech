@@ -31,9 +31,7 @@ public class ParagraphAnalyzer {
         long start = System.currentTimeMillis();
         List<String> wordList = calculateWordList(paragraph);
         calculator.addSize(wordList.size());
-        wordList.forEach(word -> {
-            calculator.addWord(word);
-        });
+        wordList.forEach(calculator::addWord);
         calculator.addTime(start);
     }
 

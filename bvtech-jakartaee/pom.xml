@@ -75,8 +75,6 @@
 			<version>${version.jersey-client}</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- Code coverage dependencies -->
 		<dependency>
 			<groupId>org.jacoco</groupId>
 			<artifactId>org.jacoco.core</artifactId>

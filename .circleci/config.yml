@@ -33,7 +33,7 @@ jobs:
           path: bvtech-jakartaee/target/bvtech-jakartaee.war
 
       - store_test_results:
-          path: bvtech-jakartaee/target/site
+          path: bvtech-jakartaee/target/site/jacoco/*
 
 
       # Build Spring Boot analyzer microservice
@@ -54,6 +54,9 @@ jobs:
       - store_artifacts:
           path: bvtech-springboot/bvtech-analyzer/target/bvtech-springboot-analyzer.jar
 
+      - store_test_results:
+          path: bvtech-springboot/bvtech-analyzer/target/site/jacoco/*
+
 
       # Build Spring Boot database microservice
       - restore_cache:
@@ -72,6 +75,9 @@ jobs:
 
       - store_artifacts:
           path: bvtech-springboot/bvtech-db/target/bvtech-springboot-db.jar
+
+      - store_test_results:
+          path: bvtech-springboot/bvtech-db/target/site/jacoco/*
 
 
       # Build Spring Boot gateway microservice

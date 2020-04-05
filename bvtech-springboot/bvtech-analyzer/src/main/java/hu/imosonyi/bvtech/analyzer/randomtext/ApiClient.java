@@ -16,7 +16,7 @@ import hu.imosonyi.bvtech.analyzer.dto.ApiResponse;
  */
 public class ApiClient {
 
-    private final RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
     public ApiClient (RestTemplateBuilder restTemplateBuilder) {
         restTemplate = restTemplateBuilder.build();
@@ -29,7 +29,7 @@ public class ApiClient {
      * @return Asynchronous response from the API.
      */
     @Async
-    public CompletableFuture<ApiResponse> reqest (String path) {
+    public CompletableFuture<ApiResponse> request (String path) {
         return CompletableFuture.supplyAsync(getRequest(path));
     }
     

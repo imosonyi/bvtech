@@ -36,7 +36,7 @@ public class AnalysisReportPublisherTest {
         response.setMostFrequent("frequent");
         response.setTotalTime(1L);
         String expected = "{\"freq_word\":\"frequent\",\"avg_paragraph_size\":1.0,\"avg_paragraph_processing_time\":1.0,\"total_processing_time\":1}";
-        
+
         analysisReportPublisher.send(response);
 
         verify(jmsTemplate, times(1)).convertAndSend(queue, expected);

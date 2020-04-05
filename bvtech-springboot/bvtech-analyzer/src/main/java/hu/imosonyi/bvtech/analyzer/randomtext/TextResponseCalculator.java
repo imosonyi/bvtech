@@ -60,7 +60,7 @@ public class TextResponseCalculator {
     }
 
     private CompletableFuture<Void> callApiAndAnalize (String path) {
-        return apiClient.reqest(path).thenAcceptAsync(apiResponseProcessor::process);
+        return apiClient.request(path).thenAcceptAsync(apiResponseProcessor::process);
     }
 
     private TextResponse getTextResponse () {
